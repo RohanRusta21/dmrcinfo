@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Metro Route Finder</title>
+</head>
+<body>
+    <h1>Metro Route Finder</h1>
+    <form method="POST">
+        <label for="source_station">Source Station:</label>
+        <select name="source_station" id="source_station">
+            {% for station in stations %}
+            <option value="{{ station }}">{{ station }}</option>
+            {% endfor %}
+        </select>
+        <br>
+        <label for="destination_station">Destination Station:</label>
+        <select name="destination_station" id="destination_station">
+            {% for station in stations %}
+            <option value="{{ station }}">{{ station }}</option>
+            {% endfor %}
+        </select>
+        <br>
+        <button type="submit">Find Route</button>
+    </form>
+</body>
+</html>
