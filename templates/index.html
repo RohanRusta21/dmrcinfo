@@ -9,17 +9,23 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
+            background-image: url('/static/metro.jpg');
+            background-attachment: fixed; /* Ensure background image remains fixed */
+            background-size: cover;
+            background-position: center;
+            height: 100vh; /* Set the height of the body to fill the viewport */
+            /* overflow: hidden;  Hide any overflowing content */
         }
         h1 {
             text-align: center;
             margin-top: 50px;
+            color: #fff; /* Set text color to white for better visibility */
         }
         form {
-            max-width: 500px;
-            margin: 30px auto;
+            max-width: 800px;
+            margin: 40px auto;
             padding: 20px;
-            background-color: #fff;
+            background-color: rgba(255, 255, 255, 0.8); /* Add transparency to form background */
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
@@ -46,6 +52,18 @@
         button:hover {
             background-color: #0056b3;
         }
+        .container {
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8); /* Add transparency to container background */
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .container p {
+            color: #333; /* Set text color */
+            line-height: 1.6; /* Set line height for better readability */
+        }
     </style>
 </head>
 <body>
@@ -65,5 +83,19 @@
         </select>
         <button type="submit">Find Route</button>
     </form>
+    <div class="container">
+        <h2>About Delhi Metro</h2>
+        <p>The concept of mass rapid transit for New Delhi first emerged from a traffic and travel characteristics study that was carried out in the city in 1969.</p>
+        <p>In 1984, the Urban Arts Commission came up with a proposal for developing a multi-modal transport system, which would consist of constructing three underground mass rapid transit corridors.</p>
+        <p>Government of Delhi jointly set up a company called the Delhi Metro Rail Corporation (DMRC) on 3 May 1995.</p>
+        <p>Physical construction work on the Delhi Metro started on 1 October 1998.</p>
+        <p>The DMRC then hired the Hong Kong MTRC as a technical consultant on rapid transit operation and construction techniques.</p>
+        <p>The first line of the Delhi Metro, the Red Line, was inaugurated by Atal Bihari Vajpayee, the then Prime Minister of India on 24 December 2002.</p>
+        <p>Delhi Metro stations began to open progressively from 25 December 2002 to 11 November 2006 in Phase I on Red Line, Yellow Line and Blue Line.</p>
+        <p>In Phase II, Delhi metro stations progressively became operational from 4 June 2008 to 27 August 2011. In this time period Delhi, Haryana, and Uttar Pradesh states are easily connected.</p>
+        <p>Delhi Metro in Phase III construction work started in 2011 with 2016 being the planned deadline. But work for the original was completed in March 2019 and fully completed in on 18 September 2021 with the opening of the Grey Line.</p>
+        <p>The construction work of Delhi Metro Phase IV started in March 2019 with 3 priority corridors, after the completion of Phase IV, the length of Delhi Metro will be more than 450 km.</p>
+        <p>Delhi Metro was planned to be built in phases spread over approximately 20 years with each phase having a target of five years to be completed and the end of one phase marking the beginning of another.</p>
+    </div>
 </body>
 </html>
