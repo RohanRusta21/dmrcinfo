@@ -4,30 +4,91 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Route Result</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f7f7;
+        }
+        h1 {
+            text-align: center;
+            margin-top: 50px;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2, h3 {
+            margin-top: 20px;
+            color: #007bff;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin-bottom: 5px;
+            color: #555;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        th, td {
+            padding: 8px;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+            color: #333;
+        }
+        td {
+            color: #666;
+        }
+        .error-message {
+            background-color: #ffcccc;
+            padding: 10px;
+            border-radius: 5px;
+            color: #cc0000;
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
     <h1>Route Result</h1>
-    {% if result.error %}
-    <p>{{ result.error }}</p>
-    {% else %}
-    <h2>{{ result.source_station }} to {{ result.destination_station }}</h2>
-    <h3>Route Options:</h3>
-    <ul>
-        {% for option in result.route_options %}
-        <li>{{ option }}</li>
-        {% endfor %}
-    </ul>
-    <h3>Information:</h3>
-    <table>
-        <tbody>
-            {% for info in result.information %}
-            <tr>
-                <td>{{ info.label }}</td>
-                <td>{{ info.value }}</td>
-            </tr>
+    <div class="container">
+        {% if result.error %}
+        <div class="error-message">
+            <p>{{ result.error }}</p>
+        </div>
+        {% else %}
+        <h2>{{ result.source_station }} to {{ result.destination_station }}</h2>
+        <h3>Route Options:</h3>
+        <ul>
+            {% for option in result.route_options %}
+            <li>{{ option }}</li>
             {% endfor %}
-        </tbody>
-    </table>
-    {% endif %}
+        </ul>
+        <h3>Information:</h3>
+        <table>
+            <tbody>
+                {% for info in result.information %}
+                <tr>
+                    <th>{{ info.label }}</th>
+                    <td>{{ info.value }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% endif %}
+    </div>
 </body>
 </html>

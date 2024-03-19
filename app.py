@@ -90,7 +90,7 @@ def process_input(source_station_input, destination_station_input):
 
                 return result
             else:
-                return {"error": "Element with id 'tabpanel1' not found."}
+                return {"error": "Not found."}
         except requests.RequestException as e:
             return {"error": str(e)}
     else:
