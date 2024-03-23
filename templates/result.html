@@ -66,6 +66,55 @@
             color: #cc0000;
             margin-top: 20px;
         }
+        /* New CSS for dynamic highlighting */
+        .highlight-violet {
+            color: violet; /* Change color as desired */
+            font-weight: bold;
+        }
+        .highlight-blue {
+            color: blue; /* Change color as desired */
+            font-weight: bold;
+        }
+        .highlight-blue1 {
+            color: blue; /* Change color as desired */
+            font-weight: bold;
+        }
+        .highlight-red {
+            color: red; /* Change color as desired */
+            font-weight: bold;
+        }
+        .highlight-green {
+            color: green; /* Change color as desired */
+            font-weight: bold;
+        }
+        .highlight-green1 {
+            color: green; /* Change color as desired */
+            font-weight: bold;
+        }
+        .highlight-yellow {
+            color: yellow; /* Change color as desired */
+            font-weight: bold;
+        }
+        .highlight-orange {
+            color: orange; /* Change color as desired */
+            font-weight: bold;
+        }
+        .highlight-pink {
+            color: pink; /* Change color as desired */
+            font-weight: bold;
+        }
+        .highlight-pink1 {
+            color: pink; /* Change color as desired */
+            font-weight: bold;
+        }
+        .highlight-magenta {
+            color: magenta; /* Change color as desired */
+            font-weight: bold;
+        }
+        .highlight-grey {
+            color: grey; /* Change color as desired */
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
@@ -79,18 +128,68 @@
         <h2>{{ result.source_station }} to {{ result.destination_station }}</h2>
         <h3>Route Options:</h3>
         <ul>
+            {% set highlighted_violet = false %}
+            {% set highlighted_blue = false %}
+            {% set highlighted_blue1 = false %}
+            {% set highlighted_red = false %}
+            {% set highlighted_green = false %}
+            {% set highlighted_green1 = false %}
+            {% set highlighted_yellow = false %}
+            {% set highlighted_orange = false %}
+            {% set highlighted_pink = false %}
+            {% set highlighted_pink1 = false %}
+            {% set highlighted_magenta = false %}
+            {% set highlighted_grey = false %}
             {% for option in result.route_options %}
-            <li>{{ option }}</li>
+                {% if not highlighted_violet and result.highlights.violet in option %}
+                    {% set highlighted_violet = true %}
+                    <li><span class="highlight-violet">{{ option }}</span></li>
+                {% elif not highlighted_yellow and result.highlights.yellow in option %}
+                    {% set highlighted_yellow = true %}
+                    <li><span class="highlight-yellow">{{ option }}</span></li>  
+                {% elif not highlighted_orange and result.highlights.orange in option %}
+                    {% set highlighted_orange = true %}
+                    <li><span class="highlight-orange">{{ option }}</span></li>      
+                {% elif not highlighted_blue and result.highlights.blue in option %}
+                    {% set highlighted_blue = true %}
+                    <li><span class="highlight-blue">{{ option }}</span></li>
+                {% elif not highlighted_blue1 and result.highlights.blue1 in option %}
+                    {% set highlighted_blue1 = true %}
+                    <li><span class="highlight-blue1">{{ option }}</span></li>    
+                {% elif not highlighted_red and result.highlights.red in option %}
+                    {% set highlighted_red = true %}
+                    <li><span class="highlight-red">{{ option }}</span></li> 
+                {% elif not highlighted_green and result.highlights.green in option %}
+                    {% set highlighted_green = true %}
+                    <li><span class="highlight-green">{{ option }}</span></li> 
+                {% elif not highlighted_green1 and result.highlights.green1 in option %}
+                    {% set highlighted_green1 = true %}
+                    <li><span class="highlight-green1">{{ option }}</span></li>
+                {% elif not highlighted_pink and result.highlights.pink in option %}
+                    {% set highlighted_pink = true %}
+                    <li><span class="highlight-pink">{{ option }}</span></li>
+                {% elif not highlighted_pink1 and result.highlights.pink1 in option %}
+                    {% set highlighted_pink1 = true %}
+                    <li><span class="highlight-pink1">{{ option }}</span></li>
+                {% elif not highlighted_magenta and result.highlights.magenta in option %}
+                    {% set highlighted_magenta = true %}
+                    <li><span class="highlight-magenta">{{ option }}</span></li>
+                {% elif not highlighted_grey and result.highlights.grey in option %}
+                    {% set highlighted_grey = true %}
+                    <li><span class="highlight-grey">{{ option }}</span></li>                         
+                {% else %}
+                    <li>{{ option }}</li>
+                {% endif %}
             {% endfor %}
-        </ul>
+        </ul>              
         <h3>Information:</h3>
         <table>
             <tbody>
                 {% for info in result.information %}
-                <tr>
-                    <th>{{ info.label }}</th>
-                    <td>{{ info.value }}</td>
-                </tr>
+                    <tr>
+                        <th>{{ info.label }}</th>
+                        <td>{{ info.value }}</td>
+                    </tr>
                 {% endfor %}
             </tbody>
         </table>
