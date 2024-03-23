@@ -66,7 +66,21 @@ def process_input(source_station_input, destination_station_input):
                     "source_station": source_station_input.capitalize(),
                     "destination_station": destination_station_input.capitalize(),
                     "route_options": [],
-                    "information": []
+                    "information": [],
+                    "highlights": {
+                        "violet": "Change for Violet Line",
+                        "blue": "Change for Blue Main Line",
+                        "blue1": "Change for Blue Branch Line",
+                        "red" : "Change for Red Line",
+                        "green" : "Change for Green Main Line",
+                        "green1" : "Change for Green Branch Line",
+                        "yellow" : "Change for Yellow Line",
+                        "orange" : "Change for Orange Line",
+                        "pink" : "Change for Pink Main Line",
+                        "pink1" : "Change for Pink Branch Line",
+                        "magenta" : "Change for Magenta Branch Line",
+                        "grey" : "Change for Grey Line"
+                    }
                 }
 
                 # Extract route options
