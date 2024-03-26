@@ -33,9 +33,9 @@
         label {
             font-weight: bold;
         }
-        select, button {
+        select, button, input {
             display: block;
-            width: 100%;
+            width: 97%;
             padding: 10px;
             margin-top: 10px;
             border: 1px solid #ccc;
@@ -72,34 +72,25 @@
             line-height: 1.6; /* Set line height for better readability */
         }
     </style>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-215568206-1"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-    
-      gtag('config', 'UA-215568206-1');
-    </script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
     <h1>Delhi Metro Route Finder</h1>
     <form method="POST">
         <label for="source_station">Source Station:</label>
-        <select name="source_station" id="source_station">
-            {% for station in stations %}
-            <option value="{{ station }}">{{ station }}</option>
-            {% endfor %}
-        </select>
+        <input type="text" id="source_station_input" name="source_station" autocomplete="off" list="source_station_list">
+        <datalist id="source_station_list">
+            <!-- Autocomplete options will be inserted here dynamically -->
+        </datalist>
         <br>
         <label for="destination_station">Destination Station:</label>
-        <select name="destination_station" id="destination_station">
-            {% for station in stations %}
-            <option value="{{ station }}">{{ station }}</option>
-            {% endfor %}
-        </select>
+        <input type="text" id="destination_station_input" name="destination_station" autocomplete="off" list="destination_station_list">
+        <datalist id="destination_station_list">
+            <!-- Autocomplete options will be inserted here dynamically -->
+        </datalist>
         <button type="submit">Find Route</button>
     </form>
+
     <div class="container">
         <h2>About Delhi Metro</h2>
         <p>The concept of mass rapid transit for New Delhi first emerged from a traffic and travel characteristics study that was carried out in the city in 1969.</p>
@@ -114,8 +105,35 @@
         <p>The construction work of Delhi Metro Phase IV started in March 2019 with 3 priority corridors, after the completion of Phase IV, the length of Delhi Metro will be more than 450 km.</p>
         <p>Delhi Metro was planned to be built in phases spread over approximately 20 years with each phase having a target of five years to be completed and the end of one phase marking the beginning of another.</p>
     </div>
+
     <footer>
         <p>This web app is not affiliated with any official network.</p>
     </footer>
+
+    <script>
+        $(document).ready(function() {
+            // Function to fetch station suggestions
+            function fetchStationSuggestions(input, targetList) {
+                $.get("/autocomplete", {input: input}, function(data) {
+                    $(targetList).empty(); // Clear existing options
+                    data.forEach(function(station) {
+                        $(targetList).append(`<option value="${station}">`);
+                    });
+                });
+            }
+
+            // Autocomplete for source station
+            $("#source_station_input").on("input", function() {
+                var input = $(this).val();
+                fetchStationSuggestions(input, "#source_station_list");
+            });
+
+            // Autocomplete for destination station
+            $("#destination_station_input").on("input", function() {
+                var input = $(this).val();
+                fetchStationSuggestions(input, "#destination_station_list");
+            });
+        });
+    </script>
 </body>
 </html>

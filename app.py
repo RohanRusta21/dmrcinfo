@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, jsonify
 import requests
 from bs4 import BeautifulSoup
 import json
@@ -9,6 +9,22 @@ app = Flask(__name__)
 with open("stations.json") as f:
     station_data = json.load(f)
     stations = station_data["stations"]
+
+# Autocomplete endpoint
+@app.route("/autocomplete")
+def autocomplete():
+    input_text = request.args.get("input", "")
+    suggestions = []
+
+    # Filter stations based on input_text
+    for station in stations:
+        if input_text.lower() in station.lower():
+            suggestions.append(station)
+
+    # Limit suggestions to 5
+    suggestions = suggestions[:5]
+
+    return jsonify(suggestions)
 
 @app.route("/", methods=["GET", "POST"])
 def home():
